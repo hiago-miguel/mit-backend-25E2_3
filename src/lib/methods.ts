@@ -1,45 +1,90 @@
-import type { Curso, Usuario } from "./mockup";
+import { UsurioMockup, type Curso, type Usuario } from "./mockup";
+import router from '@/config/routes'
 
-export async function getSession(){
-    const user = {}
-    throw new Error("TODO");
-    return user
+const MOCKED = router.root === '#';
+
+async function request(path:string, options : {
+    method?: string,
+    body?: any
+} = { method: "GET" }){
+    const url = `${ router.root }${ path }`;
+    return await fetch( url, options ).then( async (res) => await res.json() ).catch( err => { error: err.message });
 }
 
-export async function CreateUser({ nome, email, senha, nascimento } : Usuario ) {
-    const status_code : number = 400;
-    const result : any = {}
-
-    throw new Error("TODO");
-
-    if( status_code != 200 ){
+export async function getSession() : Promise< any >{
+    try {
+        throw new Error("TODO");
         return {
-            error: result?.mensagem
-        };
-    }else{
+            "authorization": "JWT TOKEN AQUI"
+        }
+    } catch (error) {
+        return UsurioMockup[0]
+    }
+}
+
+export async function CreateUser({ nome, email, senha, nascimento } : Usuario ) : Promise<Usuario | any>{
+    try {
+        const result = await request( router["criar-usuario"]() , {
+            method: "POST",
+            body: {
+                nome,
+                email,
+                senha,
+                nascimento
+            }
+        });
+
+        if( result.error ){
+            throw new Error( result.error );
+        }
+
         return result
+    } catch (error) {
+        if(MOCKED){
+            return UsurioMockup[0]
+        }else{
+            return {
+                statusCode: 400,
+                mensagem: "Erro ao criar usuário"
+            }
+        }
     }
 }
 
 export async function Login({ email, senha } : { email: string, senha : string }){
-    const status_code : number = 400;
-    const result : any = {}
+    try {
+        const result = await request( router["login"]() , {
+            method: "POST",
+            body: { email, senha }
+        });
 
-    throw new Error("TODO");
+        if( result.error ){
+            throw new Error( result.error );
+        }
 
-    if( status_code != 200 ){
-        return {
-            error: result?.mensagem
-        };
-    }else{
         return result
+    } catch (error) {
+        if(MOCKED){
+            return UsurioMockup[0]
+        }else{
+            return {
+                statusCode: 400,
+                mensagem: "Erro ao fazer login"
+            }
+        }
     }
 }
 
 export async function ListarCursos({ filtro } : { filtro?: string }){
-    const result : Curso[] = []
-    throw new Error("TODO");
-    return result
+    try{
+        const result = await request( router["listar-cursos"]( filtro ));
+
+        if( result.error ){
+            throw new Error( result.error );
+        }
+
+        return result
+    }
 }
 
 export async function Inscricao({ idCurso } : { idCurso : string }){
