@@ -13,13 +13,13 @@ export type Usuario = {
   nome: string;
   email: string;
   senha: string;
-  nascimento: Date;
+  nascimento: string;
 };
 
 export const UsurioMockup: Usuario[] = [
     {
         email: "teste@email.com",
-        nascimento: new Date(1990,4,31),
+        nascimento: "31/05/1990",
         nome: "Jason McGaiver",
         senha: "1234"
     }
@@ -105,3 +105,15 @@ export const CursosMockup: Curso[] = [
     inicio: new Date(2024, 11, 5),
   },
 ];
+
+function parseDataInicio(inicio: string | Date): Date {
+  if (inicio instanceof Date) return inicio;
+  if (typeof inicio === 'string') {
+    // Tenta converter 'DD/MM/YYYY' para 'YYYY-MM-DD'
+    const [dia, mes, ano] = inicio.split('/');
+    if (dia && mes && ano) return new Date(`${ano}-${mes}-${dia}`);
+    // Se já estiver em outro formato, tenta criar direto
+    return new Date(inicio);
+  }
+  return new Date();
+}
