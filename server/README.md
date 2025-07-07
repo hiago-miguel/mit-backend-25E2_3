@@ -2,7 +2,7 @@
 
 Backend desenvolvido em Node.js com Express para a plataforma de cursos.
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Node.js** - Runtime JavaScript
 - **Express** - Framework web
@@ -13,12 +13,12 @@ Backend desenvolvido em Node.js com Express para a plataforma de cursos.
 - **cors** - Cross-Origin Resource Sharing
 - **cookie-parser** - Parse de cookies
 
-## 📋 Pré-requisitos
+## Pré-requisitos
 
-- Node.js (versão 14 ou superior)
+- Node.js (versão 20 ou superior)
 - npm ou yarn
 
-## 🔧 Instalação
+## Instalação Backend
 
 1. **Instalar dependências:**
 ```bash
@@ -41,7 +41,19 @@ npm run dev
 npm start
 ```
 
-## 📊 Estrutura do Banco de Dados
+### Instalação Frontend
+
+1. **Instalar dependências:**
+```bash
+npm install
+```
+
+2. **Executar em desenvolvimento:**
+```bash
+npm run dev
+```
+
+## Estrutura do Banco de Dados
 
 ### Tabelas
 
@@ -69,7 +81,7 @@ npm start
 - `data_cancelamento` (DATETIME)
 - `created_at` (DATETIME, DEFAULT CURRENT_TIMESTAMP)
 
-## 🔌 Endpoints da API
+## Endpoints da API
 
 ### Autenticação
 
@@ -330,16 +342,6 @@ curl -X POST http://localhost:3001/login \
 curl -X GET http://localhost:3001/cursos/inscritos \
   -b cookies.txt
 ```
-
-## Deploy
-
-Para fazer deploy em produção:
-
-1. Configure as variáveis de ambiente
-2. Execute `npm run build` (se necessário)
-3. Execute `npm start`
-4. Configure um proxy reverso (nginx, Apache)
-5. Configure SSL/TLS
 
 ## Licença
 

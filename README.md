@@ -2,7 +2,7 @@
 
 Uma plataforma completa de cursos para fomentar a entrada no mercado de trabalho para diversas áreas.
 
-## 🚀 Tecnologias
+## Tecnologias
 
 ### Frontend
 - **Next.js** - Framework React
@@ -17,12 +17,12 @@ Uma plataforma completa de cursos para fomentar a entrada no mercado de trabalho
 - **JWT** - Autenticação
 - **bcryptjs** - Criptografia de senhas
 
-## 📋 Pré-requisitos
+## Pré-requisitos
 
 - Node.js (versão 14 ou superior)
 - npm ou yarn
 
-## 🔧 Instalação e Execução
+## Instalação e Execução
 
 ### Frontend
 ```bash
@@ -51,12 +51,12 @@ npm run dev
 npm start
 ```
 
-## 🌐 Portas
+## Portas
 
 - **Frontend**: http://localhost:3000
 - **Backend**: http://localhost:3001
 
-## 📊 Funcionalidades
+## Funcionalidades
 
 ### Públicas
 - ✅ Cadastro de alunos
@@ -68,14 +68,14 @@ npm start
 - ✅ Cancelamento de inscrições
 - ✅ Visualização de cursos inscritos
 
-## 🔐 Segurança
+## Segurança
 
 - Senhas criptografadas com bcrypt
 - Autenticação JWT com cookies seguros
 - Validação de dados de entrada
 - Controle de acesso baseado em autenticação
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 mit-backend-25E2_3/
@@ -97,30 +97,10 @@ mit-backend-25E2_3/
 └── package.json          # Dependências do frontend
 ```
 
-## 🧪 Testando a API
+## Documentação do Back End
 
-### Exemplos com curl:
+Consulte a [documentação do backend](server/README.md) para detalhes de configuração, rotas e uso da API.
 
-```bash
-# Cadastrar usuário
-curl -X POST http://localhost:3001/usuarios \
-  -H "Content-Type: application/json" \
-  -d '{"nome":"João Silva","email":"joao@email.com","senha":"123456","nascimento":"15/03/1995"}'
-
-# Fazer login
-curl -X POST http://localhost:3001/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"joao@email.com","senha":"123456"}' \
-  -c cookies.txt
-
-# Listar cursos
-curl -X GET http://localhost:3001/cursos
-
-# Inscrever em curso (com autenticação)
-curl -X POST http://localhost:3001/cursos/1 \
-  -b cookies.txt
-```
-
-## 📝 Licença
+## Licença
 
 MIT License
