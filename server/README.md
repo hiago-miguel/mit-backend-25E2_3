@@ -253,7 +253,7 @@ Listar cursos inscritos de um usuário específico.
 ]
 ```
 
-## 🔐 Segurança
+## Segurança
 
 - **Senhas criptografadas** com bcrypt (salt rounds: 10)
 - **JWT** para autenticação com expiração de 24 horas
@@ -262,7 +262,7 @@ Listar cursos inscritos de um usuário específico.
 - **Controle de acesso** baseado em autenticação
 - **Sanitização** de dados de entrada
 
-## 🚨 Códigos de Status
+## Códigos de Status
 
 - **200** - Sucesso
 - **400** - Erro de validação ou dados inválidos
@@ -270,7 +270,7 @@ Listar cursos inscritos de um usuário específico.
 - **404** - Recurso não encontrado
 - **500** - Erro interno do servidor
 
-## 🔧 Variáveis de Ambiente
+## ariáveis de Ambiente
 
 ```env
 PORT=3001
@@ -278,7 +278,7 @@ NODE_ENV=development
 JWT_SECRET=sua_chave_secreta_jwt
 ```
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 server/
@@ -304,7 +304,7 @@ server/
 └── README.md
 ```
 
-## 🧪 Testes
+## Testes
 
 Para testar a API, você pode usar:
 
@@ -331,7 +331,7 @@ curl -X GET http://localhost:3001/cursos/inscritos \
   -b cookies.txt
 ```
 
-## 🚀 Deploy
+## Deploy
 
 Para fazer deploy em produção:
 
@@ -341,6 +341,6 @@ Para fazer deploy em produção:
 4. Configure um proxy reverso (nginx, Apache)
 5. Configure SSL/TLS
 
-## 📝 Licença
+## Licença
 
 MIT License 
