@@ -1,17 +1,13 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const mysql = require('mysql2');
 
-const dbPath = path.join(__dirname, '../../database.sqlite');
-
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error('Erro ao conectar com o banco de dados:', err.message);
-  } else {
-    console.log('Conectado ao banco de dados SQLite');
-  }
+const db = mysql.createPool({
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'root',
+  database: process.env.DB_NAME || 'mit_backend',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
-
-// Habilitar foreign keys
-db.run('PRAGMA foreign_keys = ON');
 
 module.exports = db; 

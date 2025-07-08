@@ -2,29 +2,23 @@ const db = require('../config/database');
 const bcrypt = require('bcryptjs');
 
 class Usuario {
-  static async criar(dados) {
-    const { nome, email, senha, nascimento } = dados;
-    
-    // Verificar se email já existe
-    const usuarioExistente = await this.buscarPorEmail(email);
-    if (usuarioExistente) {
-      throw new Error('Email já cadastrado');
-    }
-
-    // Criptografar senha
-    const senhaCriptografada = await bcrypt.hash(senha, 10);
-
+  static async criar({ nome, email, senha, nascimento }) {
     return new Promise((resolve, reject) => {
-      const sql = `
-        INSERT INTO usuarios (nome, email, senha, nascimento)
-        VALUES (?, ?, ?, ?)
-      `;
-      
-      db.run(sql, [nome, email, senhaCriptografada, nascimento], function(err) {
+      const sql = `INSERT INTO usuarios (nome, email, senha, nascimento) VALUES (?, ?, ?, ?)`;
+      db.query(sql, [nome, email, senha, nascimento], function (err, result) {
         if (err) {
-          reject(err);
+          if (err.code === 'ER_DUP_ENTRY') {
+            reject(new Error('Email já cadastrado'));
+          } else {
+            reject(err);
+          }
         } else {
-          resolve({ id: this.lastID, nome, email, nascimento });
+          resolve({
+            id: result.insertId,
+            nome,
+            email,
+            nascimento
+          });
         }
       });
     });
@@ -46,37 +40,35 @@ class Usuario {
 
   static async buscarPorId(id) {
     return new Promise((resolve, reject) => {
-      const sql = 'SELECT id, nome, email, nascimento, created_at FROM usuarios WHERE id = ?';
-      
-      db.get(sql, [id], (err, row) => {
+      const sql = `SELECT id, nome, email, nascimento FROM usuarios WHERE id = ?`;
+      db.query(sql, [id], (err, rows) => {
         if (err) {
           reject(err);
         } else {
-          resolve(row);
+          resolve(rows[0]);
         }
       });
     });
   }
 
   static async autenticar(email, senha) {
-    const usuario = await this.buscarPorEmail(email);
-    
-    if (!usuario) {
-      throw new Error('Usuário não encontrado');
-    }
-
-    const senhaValida = await bcrypt.compare(senha, usuario.senha);
-    
-    if (!senhaValida) {
-      throw new Error('Senha incorreta');
-    }
-
-    return {
-      id: usuario.id,
-      nome: usuario.nome,
-      email: usuario.email,
-      nascimento: usuario.nascimento
-    };
+    return new Promise((resolve, reject) => {
+      const sql = `SELECT * FROM usuarios WHERE email = ?`;
+      db.query(sql, [email], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else if (!rows.length) {
+          reject(new Error('Usuário não encontrado'));
+        } else {
+          const usuario = rows[0];
+          if (usuario.senha !== senha) {
+            reject(new Error('Senha incorreta'));
+          } else {
+            resolve(usuario);
+          }
+        }
+      });
+    });
   }
 
   static async verificarExistencia(id) {

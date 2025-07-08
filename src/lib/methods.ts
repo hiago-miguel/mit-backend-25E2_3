@@ -2,13 +2,14 @@ import { UsurioMockup, type Curso, type Usuario } from "./mockup";
 import router from '@/config/routes'
 import Cookies from 'js-cookie';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 const MOCKED = router.root === '#';
 
 async function request(path:string, options : {
     method?: string,
     body?: any
 } = { method: "GET" }){
-    const url = `${ router.root }${ path }`;
+    const url = `${ API_URL }${ path }`;
     
     const fetchOptions: RequestInit = {
         method: options.method || "GET",
@@ -211,6 +212,6 @@ export async function MeusCursos({ idUsuario }:{ idUsuario : string }){
 }
 
 export async function logout() {
-  await fetch('http://localhost:3001/logout', { method: 'POST', credentials: 'include' });
+  await fetch(`${API_URL}/logout`, { method: 'POST', credentials: 'include' });
   window.location.assign('/login');
 }

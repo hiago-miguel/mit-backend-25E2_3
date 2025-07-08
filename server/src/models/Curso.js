@@ -25,7 +25,7 @@ class Curso {
       
       sql += ' ORDER BY c.inicio ASC';
       
-      db.all(sql, params, (err, rows) => {
+      db.query(sql, params, (err, rows) => {
         if (err) {
           reject(err);
         } else {
@@ -59,11 +59,11 @@ class Curso {
         GROUP BY c.id
       `;
       
-      db.get(sql, [id], (err, row) => {
+      db.query(sql, [id], (err, rows) => {
         if (err) {
           reject(err);
         } else {
-          resolve(row);
+          resolve(rows[0]);
         }
       });
     });
@@ -101,7 +101,7 @@ class Curso {
       
       sql += ' ORDER BY c.inicio ASC';
       
-      db.all(sql, params, (err, rows) => {
+      db.query(sql, params, (err, rows) => {
         if (err) {
           reject(err);
         } else {
@@ -112,8 +112,8 @@ class Curso {
             capa: row.capa,
             inscricoes: row.inscricoes,
             inicio: row.inicio,
-            inscrito: row.inscrito,
-            inscricao_cancelada: row.inscricao_cancelada
+            inscrito: !!row.inscrito,
+            inscricao_cancelada: !!row.inscricao_cancelada
           })));
         }
       });

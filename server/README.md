@@ -6,7 +6,7 @@ Backend desenvolvido em Node.js com Express para a plataforma de cursos.
 
 - **Node.js** - Runtime JavaScript
 - **Express** - Framework web
-- **SQLite** - Banco de dados relacional
+- **MySQL** - Banco de dados relacional
 - **JWT** - Autenticação via tokens
 - **bcryptjs** - Criptografia de senhas
 - **express-validator** - Validação de dados
