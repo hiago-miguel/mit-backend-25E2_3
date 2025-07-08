@@ -13,13 +13,14 @@ class Curso {
           COUNT(DISTINCT i.id) as inscricoes
         FROM cursos c
         LEFT JOIN inscricoes i ON c.id = i.curso_id AND i.cancelada = FALSE
+        WHERE STR_TO_DATE(c.inicio, '%d/%m/%Y') > CURDATE()
         GROUP BY c.id
       `;
       
       const params = [];
       
       if (filtro) {
-        sql += ' WHERE (c.nome LIKE ? OR c.descricao LIKE ?)';
+        sql += ' AND (c.nome LIKE ? OR c.descricao LIKE ?)';
         params.push(`%${filtro}%`, `%${filtro}%`);
       }
       
@@ -89,13 +90,14 @@ class Curso {
         FROM cursos c
         LEFT JOIN inscricoes i1 ON c.id = i1.curso_id AND i1.usuario_id = ?
         LEFT JOIN inscricoes i2 ON c.id = i2.curso_id AND i2.cancelada = FALSE
+        WHERE STR_TO_DATE(c.inicio, '%d/%m/%Y') > CURDATE()
         GROUP BY c.id
       `;
       
       const params = [usuarioId];
       
       if (filtro) {
-        sql += ' WHERE (c.nome LIKE ? OR c.descricao LIKE ?)';
+        sql += ' AND (c.nome LIKE ? OR c.descricao LIKE ?)';
         params.push(`%${filtro}%`, `%${filtro}%`);
       }
       

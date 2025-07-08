@@ -2,19 +2,28 @@
 
 import { useState, useEffect } from 'react';
 import Curso from '@/components/curso';
-import { ListarCursos } from '@/lib/methods';
+import { ListarCursos, ListarCursosComInscricao, getSession } from '@/lib/methods';
 import type { Curso as CursoType } from '@/lib/mockup';
 
 export default function Page() {
   const [cursos, setCursos] = useState<CursoType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [session, setSession] = useState<any>(null);
 
   useEffect(() => {
     const fetchCursos = async () => {
       try {
         setLoading(true);
-        const result = await ListarCursos({});
+        
+        // Verificar se o usuário está logado
+        const userSession = await getSession();
+        setSession(userSession);
+        
+        // Usar rota diferente baseada no status de autenticação
+        const result = userSession 
+          ? await ListarCursosComInscricao({})
+          : await ListarCursos({});
         
         if (result.error) {
           setError(result.error);

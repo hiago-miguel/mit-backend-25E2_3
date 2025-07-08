@@ -3,6 +3,7 @@ export default {
     'criar-usuario': () => '/usuarios', //url de criar usuários
     'login': () => '/login', //url de login
     'listar-cursos': ( filtro ?: any ) => '/cursos' + (filtro ? '?' + new URLSearchParams(filtro).toString() : ''), //url de listar cursos
+    'listar-cursos-com-inscricao': ( filtro ?: any ) => '/cursos/inscritos' + (filtro ? '?' + new URLSearchParams(filtro).toString() : ''), //url de listar cursos com info de inscrição
     'inscrever-curso': ( idCurso : string ) => `/cursos/${ idCurso }`, //url de se inscrever em curso,
     'cancelar-curso': ( idCurso : string ) => `/cursos/${ idCurso }`, //url de cancelar inscricao
     'meus-cursos': ( idUsuario : string ) => `/${ idUsuario }/cursos`, //url de listar meus cursos

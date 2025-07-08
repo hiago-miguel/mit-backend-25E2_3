@@ -39,10 +39,14 @@ class CursoController {
         return res.status(404).json({ mensagem: 'Curso não encontrado' });
       }
 
-      // Verificar se já está inscrito
-      const jaInscrito = await Inscricao.verificarInscricaoAtiva(usuarioId, idCurso);
-      if (jaInscrito) {
-        return res.status(400).json({ mensagem: 'Usuário já está inscrito neste curso' });
+      // Verificar se já existe qualquer inscrição (ativa ou cancelada)
+      const inscricaoExistente = await Inscricao.verificarInscricao(usuarioId, idCurso);
+      if (inscricaoExistente) {
+        if (inscricaoExistente.cancelada) {
+          return res.status(400).json({ mensagem: 'Você já se inscreveu neste curso anteriormente e cancelou a inscrição. Não é possível se inscrever novamente.' });
+        } else {
+          return res.status(400).json({ mensagem: 'Usuário já está inscrito neste curso' });
+        }
       }
 
       // Fazer inscrição

@@ -40,11 +40,11 @@ class Inscricao {
         WHERE usuario_id = ? AND curso_id = ?
       `;
       
-      db.get(sql, [usuarioId, cursoId], (err, row) => {
+      db.query(sql, [usuarioId, cursoId], (err, rows) => {
         if (err) {
           reject(err);
         } else {
-          resolve(row);
+          resolve(rows[0] || null);
         }
       });
     });

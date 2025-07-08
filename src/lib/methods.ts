@@ -144,6 +144,27 @@ export async function ListarCursos({ filtro } : { filtro?: string }){
     }
 }
 
+export async function ListarCursosComInscricao({ filtro } : { filtro?: string }){
+    try{
+        const result = await request( router["listar-cursos-com-inscricao"]( filtro ));
+
+        if( result.error ){
+            return result;
+        }
+
+        return result
+    } catch (error) {
+        if(MOCKED){
+            return []
+        }else{
+            return {
+                error: "Erro ao listar cursos com inscrição",
+                status: 500
+            }
+        }
+    }
+}
+
 export async function Inscricao({ idCurso } : { idCurso : string }){
     try {
         const result = await request( router["inscrever-curso"]( idCurso ), {

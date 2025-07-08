@@ -42,14 +42,14 @@ const queries = [
 
   // Inserir dados de exemplo (todos os cursos do mockup)
   `INSERT IGNORE INTO cursos (nome, descricao, capa, inicio) VALUES 
-    ('Desenvolvimento Web com React e Next.js', 'Aprenda a criar websites modernos e interativos com as tecnologias mais populares do mercado.', 'https://img-c.udemycdn.com/course/240x135/4160208_71be_5.jpg', '20/06/2024'),
-    ('Introdução à Inteligência Artificial', 'Descubra os fundamentos da Inteligência Artificial e suas aplicações no mundo real.', 'https://s3.amazonaws.com/coursera_assets/meta_images/generated/XDP/XDP~SPECIALIZATION!~bases-de-inteligencia-artificial-para-todos/XDP~SPECIALIZATION!~bases-de-inteligencia-artificial-para-todos.jpeg', '15/07/2024'),
-    ('Fotografia para Iniciantes', 'Aprenda os princípios básicos da fotografia e tire fotos incríveis com seu celular ou câmera.', 'https://img-c.udemycdn.com/course/240x135/1680762_24a3_4.jpg', '10/08/2024'),
-    ('Inglês Instrumental para o Mercado de Trabalho', 'Aprimore suas habilidades de comunicação em inglês e prepare-se para os desafios do mercado profissional.', 'https://img-c.udemycdn.com/course/240x135/2927102_7440_13.jpg', '05/09/2024'),
-    ('Finanças Pessoais para Iniciantes', 'Aprenda a gerenciar seu dinheiro de forma inteligente e alcançar seus objetivos financeiros.', 'https://img-c.udemycdn.com/course/750x422/1021106_fa99_6.jpg', '01/10/2024'),
-    ('Culinária Vegetariana', 'Descubra o mundo da culinária vegetariana com receitas deliciosas e nutritivas.', 'https://img-c.udemycdn.com/course/750x422/2846294_d765_5.jpg', '20/10/2024'),
-    ('Yoga para Iniciantes', 'Aprenda os princípios básicos da yoga e melhore sua flexibilidade, força e bem-estar.', 'https://img-c.udemycdn.com/course/240x135/1222344_23a3_2.jpg', '15/11/2024'),
-    ('Produtividade Pessoal', 'Aprenda técnicas para gerenciar seu tempo, organizar suas tarefas e aumentar sua produtividade.', 'https://img-c.udemycdn.com/course/750x422/1692770_85c5_4.jpg', '05/12/2024')
+    ('Desenvolvimento Web com React e Next.js', 'Aprenda a criar websites modernos e interativos com as tecnologias mais populares do mercado.', 'https://img-c.udemycdn.com/course/240x135/4160208_71be_5.jpg', '20/06/2025'),
+    ('Introdução à Inteligência Artificial', 'Descubra os fundamentos da Inteligência Artificial e suas aplicações no mundo real.', 'https://s3.amazonaws.com/coursera_assets/meta_images/generated/XDP/XDP~SPECIALIZATION!~bases-de-inteligencia-artificial-para-todos/XDP~SPECIALIZATION!~bases-de-inteligencia-artificial-para-todos.jpeg', '15/07/2025'),
+    ('Fotografia para Iniciantes', 'Aprenda os princípios básicos da fotografia e tire fotos incríveis com seu celular ou câmera.', 'https://img-c.udemycdn.com/course/240x135/1680762_24a3_4.jpg', '10/08/2025'),
+    ('Inglês Instrumental para o Mercado de Trabalho', 'Aprimore suas habilidades de comunicação em inglês e prepare-se para os desafios do mercado profissional.', 'https://img-c.udemycdn.com/course/240x135/2927102_7440_13.jpg', '05/09/2025'),
+    ('Finanças Pessoais para Iniciantes', 'Aprenda a gerenciar seu dinheiro de forma inteligente e alcançar seus objetivos financeiros.', 'https://img-c.udemycdn.com/course/750x422/1021106_fa99_6.jpg', '01/10/2025'),
+    ('Culinária Vegetariana', 'Descubra o mundo da culinária vegetariana com receitas deliciosas e nutritivas.', 'https://img-c.udemycdn.com/course/750x422/2846294_d765_5.jpg', '20/10/2025'),
+    ('Yoga para Iniciantes', 'Aprenda os princípios básicos da yoga e melhore sua flexibilidade, força e bem-estar.', 'https://img-c.udemycdn.com/course/240x135/1222344_23a3_2.jpg', '15/11/2025'),
+    ('Produtividade Pessoal', 'Aprenda técnicas para gerenciar seu tempo, organizar suas tarefas e aumentar sua produtividade.', 'https://img-c.udemycdn.com/course/750x422/1692770_85c5_4.jpg', '05/12/2025')
   ;`
 ];
 

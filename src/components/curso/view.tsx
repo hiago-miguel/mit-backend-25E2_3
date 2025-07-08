@@ -71,7 +71,8 @@ export default function CursoView({ data } : { data : CursoType }){
                 style={{ objectFit: 'cover' }}
                 unoptimized
             />
-            { session && inscrito && !inscricaoCancelada && <figcaption className="text-sm p-4 bg-slate-200 absolute m-4 shadow-xl border-slate-400 border rounded-xl">Você já se inscreveu nesse curso</figcaption> }
+            { session && inscrito && !inscricaoCancelada && <figcaption className="text-sm p-4 bg-green-200 absolute m-4 shadow-xl border-green-400 border rounded-xl">Você já se inscreveu nesse curso</figcaption> }
+            { session && inscrito && inscricaoCancelada && <figcaption className="text-sm p-4 bg-red-200 absolute m-4 shadow-xl border-red-400 border rounded-xl">Inscrição cancelada</figcaption> }
         </figure>
         <div className="p-6 flex flex-col gap-2 flex-1">
             <h3 className="text-2xl">{ data.nome }</h3>
@@ -89,7 +90,9 @@ export default function CursoView({ data } : { data : CursoType }){
         { session && (
             inscrito ? (
                 inscricaoCancelada ? (
-                    <p className="bg-red-500 p-4 text-center text-white">Inscrição cancelada</p>
+                    <div className="bg-gray-100 p-4 text-center text-gray-600 border-t">
+                        Inscrição cancelada - Não é possível se inscrever novamente
+                    </div>
                 ) : (
                     <button
                         className="text-center p-4 bg-slate-300 hover:bg-slate-400"
